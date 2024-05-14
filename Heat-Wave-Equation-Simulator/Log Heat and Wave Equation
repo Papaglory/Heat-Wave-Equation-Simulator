@@ -1,0 +1,57 @@
+ASSUMPTIONS: Heat Equation
+- The domain of the equation that is the solution goes from 0 to L.
+- u(0,t) = u(L,t) = 0.
+
+ASSUMPTIONS: Wave Equation
+- The - The domain of the equation that is the solution goes from 0 to L.
+- u(0,t) = u(L,t) = 0.
+- Initial condition du/dt at (x,0) = 0 for 0 <= x <= L.
+
+
+
+INTEGRALS: ANALYTICAL VS NUMERICAL APPROXIMATION:
+Integrating the polynomials analytical requires an integration by parts method and
+also requires a parsing language to handle the expressions to integrate. I have 
+therefore deemed it unwise to proceed with this idea. Instead I will solve the
+integrals by using Riemann sum. 
+
+
+23.06.2021
+Ran into a problem using partition variable when handing out the partitions two the 
+polynomials in the polynomialList. Found out it is better to only use a deltaX, therefore
+not needing to specify a partition number. The partition number also varied with the total
+length L, thus deltaX was a better fit overall.  
+
+
+OVERVIEW:
+Main starts up and given initial values and parameters, asks HeatEuqtionSimulation to create a solution
+which is put inside a GraphHeat object.
+This object is then given to the Drawer class that creates a windows and a MainPanel to
+visualize everything on. The MainPanel communicates with the Graph when the simulation is running.
+
+
+28.06.2021
+SPLINE IMPLEMENTATION:
+1. 	Get a list containing the points. TODO: Make sure the list is in order, order them
+	by ordering the x value, i.e. (1,3), (2,1), (5,6), (9,1).
+
+2.	Between each point, calculate the derivative from point i to point i+1. Also calculate
+	the derivative from point i+1 to i+2.
+	
+3.	Create a cubic hermite interpolation spline from point i to i+1.
+	The restrictions of the polynomial p_i are:
+		- 	p_i(x_i) = y_i
+		-	p_i(x_(i+1)) = y_(i+1)
+		- 	p'_i(x_i) = slope from point i to point i+1
+		-	p'_i(x_(i+1)) = slope from point i+1 to i+2
+		
+	Given N points, when at point k = N-1 there are no k+2 point to calculate the derivative
+	from point k+1 to k+2. Therefore, check if we are at point N-1. If it is true, calculate
+	the derivative from point k+1 to k instead. When coding this, make sure the signs are correct. 
+
+
+03.07.2021
+NOTE ABOUT WAVE DAMPING EQUATION:
+It is not the true mathematical equation for damping. I have simply copied the e term from
+heat equation and multiplied it with the wave equation, thus only simulating the damping effect
+for the wave equation.
