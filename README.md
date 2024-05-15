@@ -36,10 +36,10 @@ Uses the javax.swing package to render graphical elements and the EJML java libr
 ## Preview
 
 ### Heat Equation
-<img src="preview-heat.gif" alt="Alt Text" width="400" height="350" />
+<img src="assets/preview-heat.gif" alt="Alt Text" width="400" height="350" />
 
 ### Wave Equation
-<img src="preview-wave.gif" alt="Alt Text" width="400" height="350" />
+<img src="assets/preview-wave.gif" alt="Alt Text" width="400" height="350" />
 
 ### Wave Equation with Dampening
-<img src="preview-wavedamp.gif" alt="Alt Text" width="400" height="350" />
+<img src="assets/preview-wavedamp.gif" alt="Alt Text" width="400" height="350" />
