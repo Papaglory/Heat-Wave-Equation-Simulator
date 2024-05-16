@@ -1,33 +1,33 @@
-# Still dummy text
-
 ## Description
 
-This program numerically solves the heat equation, wave equation or wave equation with dampening using the finite difference method, approximating the heat distribution over a square domain with having value zero for the boundary conditions. The initial heat distribution is modeled by a polynomial spline surface constructed from user-defined input points in 3D-space.
+This program is a simulator (numerical solver) for three types of differential equations, the heat equation, the wave equation and the wave equation with damping. By considering the case with one spatial variable, the program creates a Hermite spline interpolation from user inputted vertices. It then models the numerical solution (e.g. heat distribution, wave) and visualizes the results using Fourier series coefficients.
 
-## How to Use
+## Assumptions
 
-No app exists for this project (apart from three demos in the 'executables' folder). To test with your own examples, download the code and run MainHeat.java. The following steps display how to proceed.
+For the heat equation, we assume the spatial variable $x$ goes from $0$ to $L$ where $L>0$ is defined as the upper bound of the domain. Let $u(x,t)$ be the temperature at position $x$ at time $t$. The boundary conditions are given by
 
-There is no standalone application for this project, but you can test it with your examples by downloading the code and running MainHeat.java. Follow these steps:
+$$u(0,t) = u(L,t) = 0\text{, for all } t\ge0.$$
 
-1. Adjust the desired settings in MainHeat.java, including parameters for graphical display (e.g., window size, pixel size), heat equation parameters (such as the thermal diffusion constant alpha), numerical parameters (e.g., time step, mesh size), and animation parameters.
-
-2. Input at least one point to construct the spline surface representing the initial heat distribution at time 0.
-
-3. Run 'MainHeat.java'.
+Similarly, for the wave eqaution, we assume the spatial variable $x$ goes from $0$ to $L$ where $L$ is defiend as in the heat equation. Letting $v(x,t)$ be the spatial displacement from the origin at position $x$ at time $t$ we have the boundary conditions given by
+$$v(0,t) = v(L,t) = 0\text{, for all } t\ge0$$
+and
+$$\frac{dv}{dt}v(x,0)=0, \text{ where } 0\leq x\leq L.$$
 
 ## Implementations
-### Hermite Spline interpolation
 
-The program utilizes Hermite spline interpolation to construct a single spline surface over the entire domain without stitching. The spline interpolation is a weaker implementation of a general spline surfare, that is, it does not model the interaction between the x and y varaibles. Non-linear relationships between x and y can thus not be modeled (there are no terms on the form x^ay^b where a,b are positive integers). The result is a potensial less accurate spline model in cases of non-linearity between x,y.
+### Hermite Spline Interpolation
 
-### Finite Difference Method
+The program uses Hermite spline interpolation to create a smooth curve through a series of user-defined points. Each segment between points is interpolated using cubic polynomials, this allows for continuity and that the boundary conditions are met, for the heat equation, this means that the temperatures are zero and for the wave equation we have a fixed zero displacement.
 
-The implementation of the finite difference method may exhibit instability, particularly when using high thermal diffusion constants or inappropriate time step values. Careful adjustment of parameters is advised to mitigate artifact issues.
-		
-### Drawing
+### Fourier Series Method
 
-The program renders the heat distribution by assigning grayscale colors to pixels based on temperature values. To ensure optimal use of the grayscale range, temperatures are scaled accordingly. Additionally, a natural dimming effect over time is achieved by adjusting pixel intensities relative to the highest temperature in the initial iteration.
+The differential equations are solved using Fourier series representations, where the solutions are expressed as a sum of sine functions with coefficients determined by the initial polynomial from the spline interpolation. The program calculates these coefficients and uses them to simulate the evolution of the differential equations over time.
+
+### Interface: Simulation
+Classes implementing this interface ('HeatSimulation', 'WaveSimulation', 'WaveDampingSimulation') are meant to setup the simulation by constructing the polynomial from the Hermite spline interoploation and derive the corresponding Fourier coefficients. Thereafter it will put this information in a Graph object that is now ready for simulating the corresponding differential equation. 
+
+### Interface: Graph
+Classes implementing this interface ('GraphHeat', 'GraphWave', 'GraphWaveDamping') represents the solution of the their corresponding differential equation using the Fourier series coefficients. By supplementing a given time, the graph can update its vertices (points (x,y) representing the fourier series function) for visualization.
 
 ## Dependencies
 
@@ -43,3 +43,6 @@ The java code relies on the javax.swing package for graphical rendering and requ
 
 ### Wave Equation with Dampening
 <img src="assets/preview-wavedamp.gif" alt="Alt Text" width="400" height="350" />
+
+## Author
+Marius H. Naasen, originally created August 2021.
