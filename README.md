@@ -2,6 +2,23 @@
 
 This program is a simulator (numerical solver) for three types of differential equations, the heat equation, the wave equation and the wave equation with damping. By considering the case with one spatial variable, the program creates a Hermite spline interpolation from user inputted vertices. It then models the numerical solution (e.g. heat distribution, wave) and visualizes the results using Fourier series coefficients.
 
+## Preview
+
+### Heat Equation
+<img src="assets/preview-heat.gif" alt="Alt Text" width="400" height="350" />
+
+Visualizing heat distribution over time.
+
+### Wave Equation
+<img src="assets/preview-wave.gif" alt="Alt Text" width="400" height="350" />
+
+Observing wave propagation over time.
+
+### Wave Equation with Dampening
+<img src="assets/preview-wavedamp.gif" alt="Alt Text" width="400" height="350" />
+
+Seeing how damping influences wave behavior over time.
+
 ## Assumptions
 
 For the heat equation, we assume the spatial variable $x$ goes from $0$ to $L$ where $L>0$ is defined as the upper bound of the domain. Let $u(x,t)$ be the temperature at position $x$ at time $t$. The boundary conditions are given by
@@ -33,16 +50,8 @@ Classes implementing this interface ('GraphHeat', 'GraphWave', 'GraphWaveDamping
 
 The java code relies on the javax.swing package for graphical rendering and requires the EJML Java library (version 0.43) for matrix calculations.
 
-## Preview
-
-### Heat Equation
-<img src="assets/preview-heat.gif" alt="Alt Text" width="400" height="350" />
-
-### Wave Equation
-<img src="assets/preview-wave.gif" alt="Alt Text" width="400" height="350" />
-
-### Wave Equation with Dampening
-<img src="assets/preview-wavedamp.gif" alt="Alt Text" width="400" height="350" />
+## Further Information
+For a more in-depth look at this project, please refer to [mariusnaasen.com/projects/heat-wave-equation-simulator](https://mariusnaasen.com/projects/heat-wave-equation-simulator).
 
 ## Author
 Marius H. Naasen, originally created August 2021.
