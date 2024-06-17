@@ -19,6 +19,18 @@ Observing wave propagation over time.
 
 Seeing how damping influences wave behavior over time.
 
+## How to Run
+
+### Source Code
+
+Simply clone this repository.
+
+### Running the Executable
+**Steps**:
+   - Go to the [Releases](https://github.com/Papaglory/Heat-Wave-Equation-Simulator/releases) page of this repository.
+   - Download the latest release ZIP file (e.g., `Heat-Wave-Equation-Simulator-v1.0.0.zip`).
+   - Extract the contents of the ZIP file to a directory of your choice.
+
 ## Assumptions
 
 For the heat equation, we assume the spatial variable $x$ goes from $0$ to $L$ where $L>0$ is defined as the upper bound of the domain. Let $u(x,t)$ be the temperature at position $x$ at time $t$. The boundary conditions are given by
